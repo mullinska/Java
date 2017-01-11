@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class Exercise8 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scan = new Scanner( System.in );
+		
+		System.out.println("Enter number of rounds:");
+		int rounds = scan.nextInt();
+		
+		int wins = 0;
+		int losses = 0;
+		while (rounds > 0) {
+			double p1guess;
+			double p2guess;
+			if (rounds % 2 == 0) {
+				System.out.println("Player1's turn, pick a number:");
+				p1guess = scan.nextDouble();
+				System.out.println("Player2's turn, pick a number:");
+				p2guess = scan.nextDouble();
+			} else {
+				System.out.println("Player2's turn, pick a number:");
+				p2guess = scan.nextDouble();
+				System.out.println("Player1's turn, pick a number:");
+				p1guess = scan.nextDouble();
+			}
+			int number = (int) (Math.random() * 10);
+			
+			int counter = 3;
+			while (counter > 0) {
+				int guess = scan.nextInt();
+				if (guess > number + 1 || guess < number - 1) {
+					System.out.println("Cold");
+				} else {
+					System.out.println("Hot");
+				}
+				if (guess == number) {
+					counter = 0;
+					wins++;
+				} else if (counter < 2) {
+					losses++;
+				}
+				counter--;
+			}
+			rounds--;
+		}
+		System.out.println(wins + " wins, " + losses + " losses");
+	}
+
+}
